@@ -5,7 +5,9 @@ import 'package:app_view_trading/view/_product/tabbar/trading_tabbar_constants.d
 import 'package:app_view_trading/view/_product/tabbar/trading_view_tabbars.dart';
 import 'package:app_view_trading/view/home/model/crypto.dart';
 
+import '../../../product/widget/divider/medium_full_width_divider.dart';
 import '../../_product/widget/appbar/tradingview_app_bar.dart';
+import '../../_product/widget/chart/trading_view_widget_chart.dart';
 
 class TradingView extends StatelessWidget {
   const TradingView({required this.crypto, super.key});
@@ -22,9 +24,8 @@ class TradingView extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const TradingviewTabbars(),
-              TradingTabViews(crypto: crypto),
-            ],
+              TradingViewWidgetChart(crypto: crypto),
+             ],
           ),
         ),
       ),

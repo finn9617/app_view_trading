@@ -91,7 +91,7 @@ class _HomeNewViewState extends State<HomeNewView> {
                       contentBlockers: contentBlockers),
                   onWebViewCreated: (controller) {
                     webViewController = controller;
-                  },
+                   },
                   onLoadStart: (controller, url) {
                     setState(() {
                       isLoading = true;

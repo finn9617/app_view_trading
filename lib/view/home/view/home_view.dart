@@ -1,3 +1,4 @@
+import 'package:app_view_trading/view/home/view/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:app_view_trading/core/enum/base_status.dart';
@@ -7,6 +8,8 @@ import 'package:app_view_trading/view/home/model/crypto.dart';
 import 'package:app_view_trading/view/home/view-model/cubit/crypto_cubit.dart';
 import 'package:app_view_trading/view/home/view-model/cubit/crypto_state.dart';
 import 'package:app_view_trading/view/home/view/home_news_view.dart';
+
+import 'chart.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -25,7 +28,6 @@ class _HomeViewState extends State<HomeView> {
   }
 
   static final List<Widget> pages = <Widget>[
-    const HomeNewView(),
     BlocBuilder<CryptoCubit, CryptoState>(
       builder: (context, state) {
         switch (state.status) {
@@ -40,6 +42,9 @@ class _HomeViewState extends State<HomeView> {
         }
       },
     ),
+    const HomeNewView(),
+    const Chart(),
+    const Profile(),
   ];
 
   @override
@@ -53,15 +58,39 @@ class _HomeViewState extends State<HomeView> {
       body: pages.elementAt(selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
+        backgroundColor: Colors.white,
         onTap: _onItemTapped,
+        selectedLabelStyle: const TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey,
+        unselectedLabelStyle: const TextStyle(
+          color: Colors.white,
+        ),
         items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+            activeIcon: Icon(Icons.home, color: Colors.white),
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.newspaper),
             label: 'News',
+            activeIcon: Icon(Icons.newspaper, color: Colors.white),
+
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.paid_outlined),
-            label: 'Coins View',
+            icon: Icon(Icons.change_history_sharp),
+            label: 'Chart News',
+            activeIcon: Icon(Icons.change_history_sharp, color: Colors.white),
+
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.people_sharp),
+            label: 'Profile',
+            activeIcon: Icon(Icons.people_sharp, color: Colors.white),
+
           ),
         ],
       ),
