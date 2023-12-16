@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "308049859709",
+    "project_id": "app-clone-36dd5",
+    "storage_bucket": "app-clone-36dd5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:308049859709:android:a3a2ec77dfc726bea44d14",
+        "android_client_info": {
+          "package_name": "com.finn.app_view_trading"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyPy3jEU27UlZgevW8UtifrW9vsSY1tfw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
