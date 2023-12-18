@@ -27,7 +27,6 @@ class _SignInDemoState extends State<SignInDemo> {
   void initState() {
     super.initState();
     _initPackageInfo();
-     
   }
 
   PackageInfo packageInfo = PackageInfo(
@@ -51,7 +50,7 @@ class _SignInDemoState extends State<SignInDemo> {
     String? displayName = await storage.read(key: "displayName");
     String? photoURL = await storage.read(key: "photoURL");
     setState(() {
-      if ((displayName??"").isNotEmpty) {
+      if ((displayName ?? "").isNotEmpty) {
         currentUser =
             UserApp(email: email, displayName: displayName, photoURL: photoURL);
       }
@@ -296,17 +295,7 @@ class _SignInDemoState extends State<SignInDemo> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: initUser(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-        return _buildBody();
-      }
-    );
+    return _buildBody();
   }
 }
 
