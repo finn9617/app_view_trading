@@ -12,7 +12,28 @@
           "package_name": "com.finn.app_view_trading"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "308049859709-6tk1dcronrpvv8col3lmagtiagh21lak.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.finn.app_view_trading",
+            "certificate_hash": "588ebbf398d9b5af6b3e99d5d9bdf7f1fd01c6f2"
+          }
+        },
+        {
+          "client_id": "308049859709-pgggiloghi0qpiatnljtibia0tblfggh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.finn.app_view_trading",
+            "certificate_hash": "cf486eed625f0cf11b437d73a6d410b8daea665d"
+          }
+        },
+        {
+          "client_id": "308049859709-qd7hu9emhofrucldtboqfuciuq2im6gj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDyPy3jEU27UlZgevW8UtifrW9vsSY1tfw"
@@ -20,7 +41,41 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "308049859709-qd7hu9emhofrucldtboqfuciuq2im6gj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:308049859709:android:51569e85d99ef221a44d14",
+        "android_client_info": {
+          "package_name": "com.google.android.gms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "308049859709-qd7hu9emhofrucldtboqfuciuq2im6gj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyPy3jEU27UlZgevW8UtifrW9vsSY1tfw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "308049859709-qd7hu9emhofrucldtboqfuciuq2im6gj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

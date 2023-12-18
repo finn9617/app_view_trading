@@ -47,7 +47,11 @@ class Authentication {
       }
     } else {
       final GoogleSignIn googleSignIn = GoogleSignIn(
-        clientId: '',
+        forceCodeForRefreshToken: true,
+        scopes: [
+          'email',
+          'https://www.googleapis.com/auth/userinfo.profile',
+        ],
       );
 
       final GoogleSignInAccount? googleSignInAccount =
