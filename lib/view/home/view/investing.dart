@@ -88,7 +88,7 @@ class _HomeNewViewState extends State<Investing> {
                   initialUrlRequest: URLRequest(
                       url: WebUri('https://www.tradingview.com/education/')),
                   initialSettings:
-                      InAppWebViewSettings(contentBlockers: contentBlockers),
+                      InAppWebViewSettings(contentBlockers: contentBlockers,                useOnDownloadStart: true),
                   onWebViewCreated: (controller) {
                     webViewController = controller;
                   },
@@ -99,18 +99,37 @@ class _HomeNewViewState extends State<Investing> {
                   },
                   onLoadStop: (controller, url) async {
                     setState(() {
-                      webViewController!.evaluateJavascript(source: """
-                          window.addEventListener('DOMContentLoaded', function(event) { 
-                            \$('.tv-header__top').remove();
-                             \$('.tv-header').remove();
-                            \$('.v-category-header__tags-content').remove();
-                            \$('footer').remove();
-                            \$('.footer').remove(); 
+                      webViewController!.evaluateJavascript(source:"""
+                  window.addEventListener('DOMContentLoaded', function(event) { 
+                    \$('.tv-header__top').remove(); 
+                    \$('.tv-category-header__content').remove();
+                    \$('footer').remove();
+                    \$('.footer').remove(); 
+                    \$('.tv-social-row__end').remove();  
+                    \$('.tv-social-row__start').remove();  
+                    \$('.tv-social-row__end--adjusted').remove();  
+                    \$('.tv-feed-widget--freeze-margin').remove(); 
+                    \$('.tv-editors-picks-heart-icon').remove(); 
+                    \$('.tv-chart-view__disclaimer-wrapper').remove(); 
+                    \$('.tv-comment-tree').remove(); 
+                    \$('.tv-chart-view__social-links').remove(); 
+                    \$('.js-social-links-container').remove();  
+                    \$('.tv-chart-view__info-area').remove();  
+                    \$('.tv-chart-view__signature').remove();   
+                    \$('.tv-widget-idea__social-row').remove();   
+                     \$('.tv-load-more--sticky js-feed-navigation').remove();  
 
-                          });
-                          """);
+                  });
+                  """);
                       isLoading = false;
                     });
+                  },
+                   onProgressChanged: (controller, progress) {
+                    if (progress == 100) {
+                      setState(() {
+                        isLoading = false;
+                      });
+                    }
                   },
                   shouldOverrideUrlLoading:
                       (controller, navigationAction) async {
@@ -123,11 +142,22 @@ class _HomeNewViewState extends State<Investing> {
                   initialUserScripts: UnmodifiableListView([
                     UserScript(source: """
                   window.addEventListener('DOMContentLoaded', function(event) { 
-                     \$('.tv-header__top').remove(); 
-                            \$('.tv-category-header__content').remove();
-                            \$('footer').remove();
-                            \$('.footer').remove(); 
-                              \$('.tv-feed-widget--freeze-margin').remove(); 
+                    \$('.tv-header__top').remove(); 
+                    \$('.tv-category-header__content').remove();
+                    \$('footer').remove();
+                    \$('.footer').remove();  
+                    \$('.tv-social-row__start').remove();  
+                    \$('.tv-social-row__end--adjusted').remove();  
+                    
+                    \$('.tv-feed-widget--freeze-margin').remove(); 
+                    \$('.tv-editors-picks-heart-icon').remove(); 
+                    \$('.tv-chart-view__disclaimer-wrapper').remove(); 
+                    \$('.tv-comment-tree').remove(); 
+                    \$('.tv-chart-view__social-links').remove(); 
+                    \$('.js-social-links-container').remove();   
+                    \$('.tv-chart-view__signature').remove();  
+                    \$('.tv-widget-idea__social-row').remove();   
+                     \$('.tv-load-more--sticky js-feed-navigation').remove();  
                   });
                   """, injectionTime: UserScriptInjectionTime.AT_DOCUMENT_START)
                   ]),

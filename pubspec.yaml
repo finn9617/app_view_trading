@@ -39,6 +39,7 @@ dependencies:
   flutter_secure_storage: ^9.0.0
   firebase_auth: ^4.15.3
   firebase_core: ^2.24.2
+  flutter_native_splash: ^2.3.7
   
  
 dev_dependencies:
@@ -56,6 +57,10 @@ flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/icon.png"
+  
+flutter_native_splash:
+  color: "#ffffff"
+  image: "assets/icon.png" 
 
 flutter:
   uses-material-design: true
