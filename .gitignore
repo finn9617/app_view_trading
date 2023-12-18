@@ -132,7 +132,7 @@ app.*.symbols
 !/dev/ci/**/Gemfile.lock
 !.vscode/settings.json
 
-*.dart_tool/
-*.idea/
-*.vscode/
-*.gradle/
+.dart_tool/
+.idea/
+.vscode/
+.gradle/

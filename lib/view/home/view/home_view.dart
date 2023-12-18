@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:app_view_trading/view/home/view/profile.dart';
+import 'package:app_view_trading/view/tradingview/view/trading_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:app_view_trading/core/enum/base_status.dart';
@@ -10,6 +13,8 @@ import 'package:app_view_trading/view/home/view-model/cubit/crypto_state.dart';
 import 'package:app_view_trading/view/home/view/home_news_view.dart';
 
 import 'chart.dart';
+import 'google_sigin.dart';
+import 'investing.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -43,8 +48,8 @@ class _HomeViewState extends State<HomeView> {
       },
     ),
     const HomeNewView(),
-    const Chart(),
-    const Profile(),
+    const Investing(),
+    const SignInDemo()
   ];
 
   @override
@@ -78,19 +83,17 @@ class _HomeViewState extends State<HomeView> {
             icon: Icon(Icons.newspaper),
             label: 'News',
             activeIcon: Icon(Icons.newspaper, color: Colors.white),
-
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.change_history_sharp),
-            label: 'Chart News',
-            activeIcon: Icon(Icons.change_history_sharp, color: Colors.white),
-
+            icon: Icon(Icons.cast_for_education_rounded),
+            label: 'Education',
+            activeIcon:
+                Icon(Icons.cast_for_education_rounded, color: Colors.white),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.people_sharp),
             label: 'Profile',
             activeIcon: Icon(Icons.people_sharp, color: Colors.white),
-
           ),
         ],
       ),

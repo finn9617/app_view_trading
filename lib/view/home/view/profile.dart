@@ -1,3 +1,4 @@
+import 'package:app_view_trading/view/home/view/google_sigin.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -48,9 +49,11 @@ class _ProfileState extends State<Profile> {
 
   Future<void> handleSignIn() async {
     try {
-      await googleSignIn.signIn();
+      GoogleSignInAccount? user = await googleSignIn.signIn();
+      print(user);
+      Navigator.pop(context);
     } catch (error) {
-      print(error);
+      Navigator.pop(context);
     }
   }
 
@@ -62,6 +65,7 @@ class _ProfileState extends State<Profile> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SignInDemo(),
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Row(
@@ -87,9 +91,13 @@ class _ProfileState extends State<Profile> {
             ),
             InkWell(
               onTap: () {
+                Loadding(context);
                 handleSignIn();
               },
               child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                height: 50,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
@@ -99,7 +107,7 @@ class _ProfileState extends State<Profile> {
                     Image.asset("assets/ic_google.png", width: 30, height: 30),
                     const Text(
                       "Login with Google",
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 20, color: Colors.black),
                     ),
                   ],
                 ),
@@ -127,13 +135,20 @@ class _ProfileState extends State<Profile> {
                     border: Border(
                   bottom: BorderSide(color: Colors.white, width: 1),
                 )),
-                child: const Row(
+                child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "Logout",
-                      style: TextStyle(fontSize: 20),
+                    InkWell(
+                      onTap: () async {
+                        Loadding(context);
+                        await googleSignIn.signOut();
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        "Logout",
+                        style: TextStyle(fontSize: 20),
+                      ),
                     ),
                   ],
                 )),
@@ -148,5 +163,17 @@ class _ProfileState extends State<Profile> {
         ),
       ),
     );
+  }
+
+  Future<dynamic> Loadding(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) => const Dialog(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            ));
   }
 }

@@ -87,11 +87,11 @@ class _HomeNewViewState extends State<HomeNewView> {
                   key: webViewKey,
                   initialUrlRequest:
                       URLRequest(url: WebUri('https://cryptonews.net/')),
-                  initialSettings: InAppWebViewSettings(
-                      contentBlockers: contentBlockers),
+                  initialSettings:
+                      InAppWebViewSettings(contentBlockers: contentBlockers),
                   onWebViewCreated: (controller) {
                     webViewController = controller;
-                   },
+                  },
                   onLoadStart: (controller, url) {
                     setState(() {
                       isLoading = true;
@@ -99,8 +99,7 @@ class _HomeNewViewState extends State<HomeNewView> {
                   },
                   onLoadStop: (controller, url) async {
                     setState(() {
-                      webViewController!.evaluateJavascript(
-                          source: """
+                      webViewController!.evaluateJavascript(source: """
                           window.addEventListener('DOMContentLoaded', function(event) { 
                             \$('header').remove();
                             \$('.download_the_app').remove();
@@ -111,7 +110,6 @@ class _HomeNewViewState extends State<HomeNewView> {
                             \$('.article-source-link').remove();       
                             \$('#top-coins').remove();        
                             \$('.top-coins-title').remove();       
-                            \$('.info').remove();   
                             \$('.cookies_processing').remove();
                              \$('div').removeAttr('ng-include')
                             \$('div').removeAttr('ng-if')
@@ -119,9 +117,8 @@ class _HomeNewViewState extends State<HomeNewView> {
                           });
                           """);
                       isLoading = false;
-                
                     });
-                  }, 
+                  },
                   shouldOverrideUrlLoading:
                       (controller, navigationAction) async {
                     final uri = navigationAction.request.url!;
@@ -131,8 +128,7 @@ class _HomeNewViewState extends State<HomeNewView> {
                     return NavigationActionPolicy.CANCEL;
                   },
                   initialUserScripts: UnmodifiableListView([
-                    UserScript(
-                        source: """
+                    UserScript(source: """
                   window.addEventListener('DOMContentLoaded', function(event) { 
                     \$('header').remove();
                     \$('.download_the_app').remove();
@@ -148,17 +144,16 @@ class _HomeNewViewState extends State<HomeNewView> {
                   \$('div').removeAttr('ng-include')
                             \$('div').removeAttr('ng-if')
                   });
-                  """,
-                        injectionTime:
-                            UserScriptInjectionTime.AT_DOCUMENT_START)
+                  """, injectionTime: UserScriptInjectionTime.AT_DOCUMENT_START)
                   ]),
                 ),
                 if (isLoading)
-                Container(
-                  color: Colors.white,
-                  child: const Center(
-                    child: CircularProgressIndicator(),),
-                )
+                  Container(
+                    color: Colors.white,
+                    child: const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  )
               ],
             ),
           ))),
