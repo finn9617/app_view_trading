@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "308049859709-na3k43d3a22vejrn0j8pboi4tdbtaalo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.finn.app_view_trading",
+            "certificate_hash": "ecd0cc6f0a3876044de69004662f06c697c1a313"
+          }
+        },
+        {
           "client_id": "308049859709-pgggiloghi0qpiatnljtibia0tblfggh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -45,6 +53,13 @@
             {
               "client_id": "308049859709-qd7hu9emhofrucldtboqfuciuq2im6gj.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "308049859709-nk1m40cduep8b1a7nu3aqalud2no9hbu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.drivermatchingapp.production"
+              }
             }
           ]
         }
@@ -74,6 +89,13 @@
             {
               "client_id": "308049859709-qd7hu9emhofrucldtboqfuciuq2im6gj.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "308049859709-nk1m40cduep8b1a7nu3aqalud2no9hbu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.drivermatchingapp.production"
+              }
             }
           ]
         }

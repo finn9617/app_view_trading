@@ -67,13 +67,13 @@ class Authentication {
         );
 
         try {
-          // final UserCredential userCredential =
-          //     await auth.signInWithCredential(credential);
+          final UserCredential userCredential =
+              await auth.signInWithCredential(credential);
 
           user = UserApp(
-            displayName: googleSignInAccount.displayName,
-            email: googleSignInAccount.email,
-            photoURL: googleSignInAccount.photoUrl,
+            displayName: userCredential.user?.displayName,
+            email: userCredential.user?.email,
+            photoURL: userCredential.user?.photoURL,
           );
         } on FirebaseAuthException catch (e) {
           if (e.code == 'account-exists-with-different-credential') {

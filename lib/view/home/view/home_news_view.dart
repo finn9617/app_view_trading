@@ -96,7 +96,7 @@ class _HomeNewViewState extends State<HomeNewView> {
                     setState(() {
                       isLoading = true;
                     });
-                  }, 
+                  },
                   onProgressChanged: (controller, progress) {
                     if (progress == 100) {
                       setState(() {

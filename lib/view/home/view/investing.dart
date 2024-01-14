@@ -87,8 +87,9 @@ class _HomeNewViewState extends State<Investing> {
                   key: webViewKey,
                   initialUrlRequest: URLRequest(
                       url: WebUri('https://www.tradingview.com/education/')),
-                  initialSettings:
-                      InAppWebViewSettings(contentBlockers: contentBlockers,                useOnDownloadStart: true),
+                  initialSettings: InAppWebViewSettings(
+                      contentBlockers: contentBlockers,
+                      useOnDownloadStart: true),
                   onWebViewCreated: (controller) {
                     webViewController = controller;
                   },
@@ -99,7 +100,7 @@ class _HomeNewViewState extends State<Investing> {
                   },
                   onLoadStop: (controller, url) async {
                     setState(() {
-                      webViewController!.evaluateJavascript(source:"""
+                      webViewController!.evaluateJavascript(source: """
                   window.addEventListener('DOMContentLoaded', function(event) { 
                     \$('.tv-header__top').remove(); 
                     \$('.tv-category-header__content').remove();
@@ -117,14 +118,17 @@ class _HomeNewViewState extends State<Investing> {
                     \$('.tv-chart-view__info-area').remove();  
                     \$('.tv-chart-view__signature').remove();   
                     \$('.tv-widget-idea__social-row').remove();   
-                     \$('.tv-load-more--sticky js-feed-navigation').remove();  
-
+                    \$('.tv-load-more--sticky js-feed-navigation').remove();  
+                    \$('.tv-chart-view__info').remove();  
+                    \$('.tv-social-row--full-width').remove();  
+                    \$('.tv-card-social-item').remove();  
+                    
                   });
                   """);
                       isLoading = false;
                     });
                   },
-                   onProgressChanged: (controller, progress) {
+                  onProgressChanged: (controller, progress) {
                     if (progress == 100) {
                       setState(() {
                         isLoading = false;
@@ -147,8 +151,7 @@ class _HomeNewViewState extends State<Investing> {
                     \$('footer').remove();
                     \$('.footer').remove();  
                     \$('.tv-social-row__start').remove();  
-                    \$('.tv-social-row__end--adjusted').remove();  
-                    
+                    \$('.tv-social-row__end--adjusted').remove();   
                     \$('.tv-feed-widget--freeze-margin').remove(); 
                     \$('.tv-editors-picks-heart-icon').remove(); 
                     \$('.tv-chart-view__disclaimer-wrapper').remove(); 
@@ -157,7 +160,11 @@ class _HomeNewViewState extends State<Investing> {
                     \$('.js-social-links-container').remove();   
                     \$('.tv-chart-view__signature').remove();  
                     \$('.tv-widget-idea__social-row').remove();   
-                     \$('.tv-load-more--sticky js-feed-navigation').remove();  
+                    \$('.tv-load-more--sticky js-feed-navigation').remove();  
+                    \$('.tv-chart-view__info').remove();  
+                      \$('.tv-social-row--full-width').remove();  
+                    \$('.tv-card-social-item').remove();  
+
                   });
                   """, injectionTime: UserScriptInjectionTime.AT_DOCUMENT_START)
                   ]),

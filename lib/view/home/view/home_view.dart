@@ -32,6 +32,12 @@ class _HomeViewState extends State<HomeView> {
     });
   }
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   static final List<Widget> pages = <Widget>[
     BlocBuilder<CryptoCubit, CryptoState>(
       builder: (context, state) {
