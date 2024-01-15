@@ -4,12 +4,7 @@ import 'dart:async';
 
 import 'package:app_view_trading/view/home/service/authentication.dart';
 import 'package:app_view_trading/view/home/view/about.dart';
-import 'package:app_view_trading/view/home/view/user_info_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_android_dynamic_icon/android_dynamic_icon.dart';
-import 'package:flutter_app_icons/flutter_app_icons.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
