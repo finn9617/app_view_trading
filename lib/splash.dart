@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_icons/flutter_app_icons.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:restart_app/restart_app.dart';
 
 import 'view/home/view/h5.dart';
 
@@ -17,7 +18,7 @@ class Splash extends StatefulWidget {
 
 class _SplashState extends State<Splash> {
   final storage = FlutterSecureStorage();
-  bool isLogo = true;
+  bool? isLogo = false;
   @override
   void initState() {
     super.initState();
@@ -30,20 +31,27 @@ class _SplashState extends State<Splash> {
     final data = await users.doc("app_forex").get();
     Map<String, dynamic> dataFirebase = data.data() as Map<String, dynamic>;
     final iscrytrade = dataFirebase['super'];
+    isLogo = await storage.read(key: 'isLogo') == 'true' ? true : false;
+    final isFirst = await storage.read(key: 'isFirst') == 'true' ? true : false;
+    final changLogo =
+        await storage.read(key: 'changelogo') == 'true' ? true : false;
 
-    if (iscrytrade) {
+    if (iscrytrade && isFirst) {
       storage.write(key: 'isLogo', value: "true");
-      if (!isLogo) {
-        final _flutterAppIconsPlugin = FlutterAppIcons();
-        _flutterAppIconsPlugin.setIcon(
+      if (changLogo) {
+        await storage.write(key: 'changelogo', value: "false");
+        FlutterAppIcons().setIcon(
           icon: 'favicon-failure.png',
           oldIcon: 'favicon.png',
         );
+        // Restart.restartApp();
       }
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => const H5()));
     } else {
+      storage.write(key: 'isFirst', value: "true");
       storage.write(key: 'isLogo', value: "false");
+      storage.write(key: 'changelogo', value: "true");
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => const HomePage()));
     }
@@ -64,7 +72,7 @@ class _SplashState extends State<Splash> {
               );
             } else {
               return Center(
-                child: isLogo
+                child: isLogo!
                     ? Image.asset(
                         'assets/playstore-icon.png',
                         width: 100,

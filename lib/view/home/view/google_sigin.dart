@@ -30,6 +30,7 @@ class _SignInDemoState extends State<SignInDemo> {
   void initState() {
     super.initState();
     _initPackageInfo();
+    initUser();
   }
 
   PackageInfo packageInfo = PackageInfo(

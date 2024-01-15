@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.finn.app_view_trading">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> 
     <application
         android:label="News CryTrade"
         android:name="${applicationName}"
@@ -24,8 +24,9 @@
               android:resource="@style/NormalTheme"
               /> 
             <intent-filter android:autoVerify="true">
-                  <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/> 
+                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER"/>
              </intent-filter>
         </activity>
 
@@ -37,10 +38,10 @@
            android:targetActivity=".MainActivity">
            <intent-filter>
                <action android:name="android.intent.action.MAIN" />
-               <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+               <category android:name="android.intent.category.LAUNCHER" />
            </intent-filter>
        </activity-alias>
-       <activity-alias android:label="News CryTrade"
+       <activity-alias android:label="Citi.la"
            android:icon="@mipmap/ic_launcher_one"
            android:name=".favicon.failure.png"
            android:exported="true"
