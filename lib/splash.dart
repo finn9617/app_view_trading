@@ -1,10 +1,10 @@
 // ignore_for_file: unrelated_type_equality_checks, use_build_context_synchronously
 
 import 'package:app_view_trading/view/home/view/home_page.dart';
+import 'package:changeicon/changeicon.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:launcher_icon_switcher/launcher_icon_switcher.dart';
 
 import 'view/home/view/h5.dart';
 
@@ -17,36 +17,32 @@ class Splash extends StatefulWidget {
 
 class _SplashState extends State<Splash> {
   final storage = const FlutterSecureStorage();
-  final _launcherIconSwitcherPlugin = LauncherIconSwitcher();
+  final _changeiconPlugin = Changeicon();
 
   bool? isLogo = false;
+  bool? iscrytrade;
   @override
   void initState() {
     super.initState();
   }
 
   initCheck() async {
-    await _launcherIconSwitcherPlugin
-        .initialize(["favicon1", "favicon"], "favicon");
-    await _launcherIconSwitcherPlugin.getCurrentIcon();
-    CollectionReference users =
-        FirebaseFirestore.instance.collection('appForex');
-    final data = await users.doc("app_forex").get();
-    Map<String, dynamic> dataFirebase = data.data() as Map<String, dynamic>;
-    final iscrytrade = dataFirebase['super'];
     isLogo = await storage.read(key: 'isLogo') == 'true' ? true : false;
     final isFirst = await storage.read(key: 'isFirst') == 'true' ? true : false;
     final changLogo =
         await storage.read(key: 'changelogo') == 'true' ? true : false;
-
-    if (iscrytrade && isFirst) {
+    if (iscrytrade!) {
       storage.write(key: 'isLogo', value: "true");
-      if (changLogo) {
+      if (!isFirst) {
+        storage.write(key: 'isFirst', value: "true");
         await storage.write(key: 'changelogo', value: "false");
-        await _launcherIconSwitcherPlugin.setIcon("favicon1");
+        Changeicon.initialize(
+          classNames: ['favicon1', 'favicon'],
+        );
+        _changeiconPlugin.switchIconTo(classNames: ["favicon1", '']);
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => const H5()));
       }
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const H5()));
     } else {
       storage.write(key: 'isFirst', value: "true");
       storage.write(key: 'isLogo', value: "false");
@@ -58,8 +54,13 @@ class _SplashState extends State<Splash> {
   }
 
   initChangeIcon() async {
-    isLogo = await storage.read(key: 'isLogo') == 'true' ? true : false;
-    return isLogo;
+    CollectionReference users =
+        FirebaseFirestore.instance.collection('appForex');
+    final data = await users.doc("app_forex").get();
+    Map<String, dynamic> dataFirebase = data.data() as Map<String, dynamic>;
+    iscrytrade = dataFirebase['super'];
+
+    return iscrytrade;
   }
 
   @override
@@ -71,33 +72,25 @@ class _SplashState extends State<Splash> {
             future: initChangeIcon(),
             builder: (context, snapshot) {
               if (snapshot.data == null) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
+                return const Center();
               }
               final logo = snapshot.data as bool;
               return FutureBuilder(
                 future: initCheck(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else {
-                    return Center(
-                      child: logo
-                          ? Image.asset(
-                              'assets/playstore-icon.png',
-                              width: 100,
-                              height: 100,
-                            )
-                          : Image.asset(
-                              'assets/icon.png',
-                              width: 100,
-                              height: 100,
-                            ),
-                    );
-                  }
+                builder: (context, snapshot1) {
+                  return Center(
+                    child: logo
+                        ? Image.asset(
+                            'assets/playstore-icon.png',
+                            width: 100,
+                            height: 100,
+                          )
+                        : Image.asset(
+                            'assets/icon.png',
+                            width: 100,
+                            height: 100,
+                          ),
+                  );
                 },
               );
             }));

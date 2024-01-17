@@ -41,7 +41,7 @@ dependencies:
   firebase_core: ^2.24.2
   flutter_native_splash: ^2.3.7
   cloud_firestore: ^4.14.0
-  launcher_icon_switcher: ^0.0.2
+  changeicon: ^1.0.0
 
 dev_dependencies:
   # linter

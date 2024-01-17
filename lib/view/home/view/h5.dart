@@ -26,32 +26,42 @@ class _H5State extends State<H5> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        return false;
-      },
+    return PopScope(
+      canPop: false,
       child: Scaffold(
+          backgroundColor: Colors.black,
           body: SafeArea(
-              child: Container(
-        color: Colors.white,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            InAppWebView(
-              key: webViewKey,
-              initialUrlRequest:
-                  URLRequest(url: WebUri('https://m.citifutures.cc/')),
-              onWebViewCreated: (controller) {
-                webViewController = controller;
+            child: InkWell(
+              onLongPress: () {
+                webViewController!.reload();
               },
-              onReceivedServerTrustAuthRequest: (controller, challenge) async {
-                return ServerTrustAuthResponse(
-                    action: ServerTrustAuthResponseAction.PROCEED);
-              },
+              child: InAppWebView(
+                key: webViewKey,
+                initialUrlRequest:
+                    URLRequest(url: WebUri('https://m.citifutures.cc/')),
+                onWebViewCreated: (controller) {
+                  webViewController = controller;
+                },
+                onReceivedServerTrustAuthRequest:
+                    (controller, challenge) async {
+                  return ServerTrustAuthResponse(
+                      action: ServerTrustAuthResponseAction.PROCEED);
+                },
+              ),
             ),
-          ],
-        ),
-      ))),
+          )),
     );
+  }
+
+  Future<dynamic> Loadding(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (context) => const Dialog(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            ));
   }
 }
