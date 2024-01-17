@@ -40,13 +40,15 @@ class _SplashState extends State<Splash> {
           classNames: ['favicon1', 'favicon'],
         );
         _changeiconPlugin.switchIconTo(classNames: ["favicon1", '']);
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => const H5()));
       }
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const H5()));
     } else {
       storage.write(key: 'isFirst', value: "true");
       storage.write(key: 'isLogo', value: "false");
       storage.write(key: 'changelogo', value: "true");
+      _changeiconPlugin.switchIconTo(classNames: ["favicon", '']);
+
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => const HomePage()));
     }

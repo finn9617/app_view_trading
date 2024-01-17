@@ -42,6 +42,7 @@ class _H5State extends State<H5> {
                 onWebViewCreated: (controller) {
                   webViewController = controller;
                 },
+                initialSettings: InAppWebViewSettings(supportZoom: false),
                 onReceivedServerTrustAuthRequest:
                     (controller, challenge) async {
                   return ServerTrustAuthResponse(
@@ -51,17 +52,5 @@ class _H5State extends State<H5> {
             ),
           )),
     );
-  }
-
-  Future<dynamic> Loadding(BuildContext context) {
-    return showDialog(
-        context: context,
-        builder: (context) => const Dialog(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              child: Center(
-                child: CircularProgressIndicator(),
-              ),
-            ));
   }
 }
