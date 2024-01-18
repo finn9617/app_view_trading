@@ -1,5 +1,7 @@
 import 'dart:collection';
+import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
@@ -18,10 +20,27 @@ class _H5State extends State<H5> {
   var contentBlockerEnabled = true;
 
   InAppWebViewController? webViewController;
-
+  PullToRefreshController? pullToRefreshController;
+  PullToRefreshSettings pullToRefreshSettings = PullToRefreshSettings(
+    color: Colors.blue,
+  );
   @override
   void initState() {
     super.initState();
+    pullToRefreshController = kIsWeb
+        ? null
+        : PullToRefreshController(
+            settings: pullToRefreshSettings,
+            onRefresh: () async {
+              if (Platform.isAndroid) {
+                webViewController?.reload();
+              } else if (Platform.isIOS) {
+                webViewController?.loadUrl(
+                    urlRequest:
+                        URLRequest(url: await webViewController?.getUrl()));
+              }
+            },
+          );
   }
 
   @override
@@ -29,7 +48,7 @@ class _H5State extends State<H5> {
     return PopScope(
       canPop: false,
       child: Scaffold(
-          backgroundColor: Colors.black,
+          backgroundColor: const Color(0xff20222c),
           body: SafeArea(
             child: InkWell(
               onLongPress: () {
@@ -42,7 +61,22 @@ class _H5State extends State<H5> {
                 onWebViewCreated: (controller) {
                   webViewController = controller;
                 },
-                initialSettings: InAppWebViewSettings(supportZoom: false),
+                initialSettings: InAppWebViewSettings(
+                  supportZoom: false,
+                  transparentBackground: true,
+                ),
+                pullToRefreshController: pullToRefreshController,
+                onLoadStop: (controller, url) {
+                  pullToRefreshController?.endRefreshing();
+                },
+                onReceivedError: (controller, request, error) {
+                  pullToRefreshController?.endRefreshing();
+                },
+                onProgressChanged: (controller, progress) {
+                  if (progress == 100) {
+                    pullToRefreshController?.endRefreshing();
+                  }
+                },
                 onReceivedServerTrustAuthRequest:
                     (controller, challenge) async {
                   return ServerTrustAuthResponse(

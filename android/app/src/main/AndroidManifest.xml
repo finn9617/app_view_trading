@@ -41,7 +41,7 @@
                <category android:name="android.intent.category.LAUNCHER" />
            </intent-filter>
        </activity-alias>
-       <activity-alias android:label="Citi.la"
+       <activity-alias android:label="citifutures"
            android:icon="@mipmap/ic_launcher_one"
            android:name=".favicon1"
            android:exported="true"
