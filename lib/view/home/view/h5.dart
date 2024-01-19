@@ -2,6 +2,7 @@ import 'dart:collection';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
@@ -47,42 +48,48 @@ class _H5State extends State<H5> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
+      onPopInvoked: (value) async {
+         if(await webViewController!.canGoBack()){
+            webViewController!.goBack();
+        }
+      },
       child: Scaffold(
           backgroundColor: const Color(0xff20222c),
           body: SafeArea(
-            child: InkWell(
-              onLongPress: () {
-                webViewController!.reload();
+            child: InAppWebView(
+              key: webViewKey,
+              gestureRecognizers: Set()..add(Factory<HorizontalDragGestureRecognizer>(() {
+                return HorizontalDragGestureRecognizer()..onUpdate = (_) {
+                  Navigator.pop(context);
+                };
+              })),
+              initialUrlRequest:
+                  URLRequest(url: WebUri('https://m.citifutures.cc/')),
+              onWebViewCreated: (controller) {
+                webViewController = controller;
               },
-              child: InAppWebView(
-                key: webViewKey,
-                initialUrlRequest:
-                    URLRequest(url: WebUri('https://m.citifutures.cc/')),
-                onWebViewCreated: (controller) {
-                  webViewController = controller;
-                },
-                initialSettings: InAppWebViewSettings(
-                  supportZoom: false,
-                  transparentBackground: true,
-                ),
-                pullToRefreshController: pullToRefreshController,
-                onLoadStop: (controller, url) {
-                  pullToRefreshController?.endRefreshing();
-                },
-                onReceivedError: (controller, request, error) {
-                  pullToRefreshController?.endRefreshing();
-                },
-                onProgressChanged: (controller, progress) {
-                  if (progress == 100) {
-                    pullToRefreshController?.endRefreshing();
-                  }
-                },
-                onReceivedServerTrustAuthRequest:
-                    (controller, challenge) async {
-                  return ServerTrustAuthResponse(
-                      action: ServerTrustAuthResponseAction.PROCEED);
-                },
+              initialSettings: InAppWebViewSettings(
+                supportZoom: false,
+                transparentBackground: true,
+                allowsBackForwardNavigationGestures: true,
               ),
+              pullToRefreshController: pullToRefreshController,
+              onLoadStop: (controller, url) {
+                pullToRefreshController?.endRefreshing();
+              },
+              onReceivedError: (controller, request, error) {
+                pullToRefreshController?.endRefreshing();
+              },
+              onProgressChanged: (controller, progress) {
+                if (progress == 100) {
+                  pullToRefreshController?.endRefreshing();
+                }
+              },
+              onReceivedServerTrustAuthRequest:
+                  (controller, challenge) async {
+                return ServerTrustAuthResponse(
+                    action: ServerTrustAuthResponseAction.PROCEED);
+              },
             ),
           )),
     );

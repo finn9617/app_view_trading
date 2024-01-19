@@ -68,7 +68,7 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Colors.white,
+        color:const Color(0xff20222c),
         height: MediaQuery.of(context).size.height,
         child: FutureBuilder(
             future: initChangeIcon(),
