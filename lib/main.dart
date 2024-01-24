@@ -13,9 +13,12 @@ Future<void> main() async {
   GetItSource.setup();
   Bloc.observer = CubitObserver();
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Color(0xff20222c),
-  ));
+  // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+  //   statusBarColor: Color(0xff20222c),
+  // ));
+
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

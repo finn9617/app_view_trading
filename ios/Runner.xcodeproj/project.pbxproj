@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		042AE0FD2B60A7C200642A8E /* trading@x2.png in Resources */ = {isa = PBXBuildFile; fileRef = 042AE0FB2B60A7C200642A8E /* trading@x2.png */; };
+		042AE0FE2B60A7C200642A8E /* trading@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 042AE0FC2B60A7C200642A8E /* trading@3x.png */; };
+		04C7D5452B60A380000CA4DC /* favicon1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C7D5432B60A380000CA4DC /* favicon1@2x.png */; };
+		04C7D5462B60A380000CA4DC /* favicon1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04C7D5442B60A380000CA4DC /* favicon1@3x.png */; };
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		3411F99E6E98F3C9DD595612 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D06A0F2FA526904BA2E589 /* Pods_Runner.framework */; };
@@ -42,6 +46,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		042AE0FB2B60A7C200642A8E /* trading@x2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trading@x2.png"; sourceTree = "<group>"; };
+		042AE0FC2B60A7C200642A8E /* trading@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trading@3x.png"; sourceTree = "<group>"; };
+		04C7D5432B60A380000CA4DC /* favicon1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favicon1@2x.png"; sourceTree = "<group>"; };
+		04C7D5442B60A380000CA4DC /* favicon1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favicon1@3x.png"; sourceTree = "<group>"; };
 		0570B9EA79DA4691174856DE /* Pods-RunnerTests.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile.xcconfig"; sourceTree = "<group>"; };
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
@@ -97,8 +105,18 @@
 				48FB078DC1499A694E22E05F /* Pods-RunnerTests.release.xcconfig */,
 				0570B9EA79DA4691174856DE /* Pods-RunnerTests.profile.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		04C7D53A2B60A342000CA4DC /* App Icons */ = {
+			isa = PBXGroup;
+			children = (
+				042AE0FC2B60A7C200642A8E /* trading@3x.png */,
+				042AE0FB2B60A7C200642A8E /* trading@x2.png */,
+				04C7D5432B60A380000CA4DC /* favicon1@2x.png */,
+				04C7D5442B60A380000CA4DC /* favicon1@3x.png */,
+			);
+			path = "App Icons";
 			sourceTree = "<group>";
 		};
 		331C8082294A63A400263BE5 /* RunnerTests */ = {
@@ -144,6 +162,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				04C7D53A2B60A342000CA4DC /* App Icons */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
@@ -199,6 +218,7 @@
 				9705A1C41CF9048500538489 /* Embed Frameworks */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				325A69956748DD6F6222A5CB /* [CP] Embed Pods Frameworks */,
+				ECDFF73B5E215BDF578664D2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -215,7 +235,7 @@
 		97C146E61CF9000F007C117D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					331C8080294A63A400263BE5 = {
@@ -259,8 +279,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04C7D5452B60A380000CA4DC /* favicon1@2x.png in Resources */,
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
+				042AE0FD2B60A7C200642A8E /* trading@x2.png in Resources */,
+				04C7D5462B60A380000CA4DC /* favicon1@3x.png in Resources */,
+				042AE0FE2B60A7C200642A8E /* trading@3x.png in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
 			);
@@ -338,6 +362,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build";
+		};
+		ECDFF73B5E215BDF578664D2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		FD8E62993E39E6FD8F10AAA4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -452,7 +493,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;
@@ -579,7 +620,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -628,7 +669,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;

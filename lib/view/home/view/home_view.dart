@@ -66,6 +66,7 @@ class _HomeViewState extends State<HomeView> {
           "News CryTrade",
         ),
       ),
+      backgroundColor: const Color(0xff20222c),
       body: pages.elementAt(selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
@@ -91,10 +92,9 @@ class _HomeViewState extends State<HomeView> {
             activeIcon: Icon(Icons.newspaper, color: Colors.white),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.cast_for_education_rounded),
-            label: 'Education',
-            activeIcon:
-                Icon(Icons.cast_for_education_rounded, color: Colors.white),
+            icon: Icon(Icons.analytics),
+            label: 'Analytics',
+            activeIcon: Icon(Icons.analytics, color: Colors.white),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.people_sharp),

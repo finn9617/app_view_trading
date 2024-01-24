@@ -86,7 +86,8 @@ class _HomeNewViewState extends State<Investing> {
                 InAppWebView(
                   key: webViewKey,
                   initialUrlRequest: URLRequest(
-                      url: WebUri('https://www.tradingview.com/education/')),
+                      url: WebUri(
+                          'https://cryptonews.net/editorial/analytics/')),
                   initialSettings: InAppWebViewSettings(
                       contentBlockers: contentBlockers,
                       useOnDownloadStart: true),
@@ -102,26 +103,20 @@ class _HomeNewViewState extends State<Investing> {
                     setState(() {
                       webViewController!.evaluateJavascript(source: """
                   window.addEventListener('DOMContentLoaded', function(event) { 
-                    \$('.tv-header__top').remove(); 
-                    \$('.tv-category-header__content').remove();
-                    \$('footer').remove();
-                    \$('.footer').remove(); 
-                    \$('.tv-social-row__end').remove();  
-                    \$('.tv-social-row__start').remove();  
-                    \$('.tv-social-row__end--adjusted').remove();  
-                    \$('.tv-feed-widget--freeze-margin').remove(); 
-                    \$('.tv-editors-picks-heart-icon').remove(); 
-                    \$('.tv-chart-view__disclaimer-wrapper').remove(); 
-                    \$('.tv-comment-tree').remove(); 
-                    \$('.tv-chart-view__social-links').remove(); 
-                    \$('.js-social-links-container').remove();  
-                    \$('.tv-chart-view__info-area').remove();  
-                    \$('.tv-chart-view__signature').remove();   
-                    \$('.tv-widget-idea__social-row').remove();   
-                    \$('.tv-load-more--sticky js-feed-navigation').remove();  
-                    \$('.tv-chart-view__info').remove();  
-                    \$('.tv-social-row--full-width').remove();  
-                    \$('.tv-card-social-item').remove();  
+                   \$('header').remove();
+                            \$('.download_the_app').remove();
+                            \$('footer').remove();
+                            \$('.footer').remove();
+                            \$('.vert').remove(); 
+                            \$('noindex').remove();     
+                            \$('.article-source-link').remove();       
+                            \$('#top-coins').remove();        
+                            \$('.top-coins-title').remove();       
+                            \$('.cookies_processing').remove();
+                             \$('div').removeAttr('ng-include')
+                            \$('div').removeAttr('ng-if')
+                            \$('.share-icon').remove();
+   \$('.comments').remove();
                     
                   });
                   """);
@@ -138,7 +133,7 @@ class _HomeNewViewState extends State<Investing> {
                   shouldOverrideUrlLoading:
                       (controller, navigationAction) async {
                     final uri = navigationAction.request.url!;
-                    if (uri.toString().contains('tradingview.com')) {
+                    if (uri.toString().contains('cryptonews')) {
                       return NavigationActionPolicy.ALLOW;
                     }
                     return NavigationActionPolicy.CANCEL;
@@ -146,24 +141,20 @@ class _HomeNewViewState extends State<Investing> {
                   initialUserScripts: UnmodifiableListView([
                     UserScript(source: """
                   window.addEventListener('DOMContentLoaded', function(event) { 
-                    \$('.tv-header__top').remove(); 
-                    \$('.tv-category-header__content').remove();
-                    \$('footer').remove();
-                    \$('.footer').remove();  
-                    \$('.tv-social-row__start').remove();  
-                    \$('.tv-social-row__end--adjusted').remove();   
-                    \$('.tv-feed-widget--freeze-margin').remove(); 
-                    \$('.tv-editors-picks-heart-icon').remove(); 
-                    \$('.tv-chart-view__disclaimer-wrapper').remove(); 
-                    \$('.tv-comment-tree').remove(); 
-                    \$('.tv-chart-view__social-links').remove(); 
-                    \$('.js-social-links-container').remove();   
-                    \$('.tv-chart-view__signature').remove();  
-                    \$('.tv-widget-idea__social-row').remove();   
-                    \$('.tv-load-more--sticky js-feed-navigation').remove();  
-                    \$('.tv-chart-view__info').remove();  
-                      \$('.tv-social-row--full-width').remove();  
-                    \$('.tv-card-social-item').remove();  
+                    \$('header').remove();
+                            \$('.download_the_app').remove();
+                            \$('footer').remove();
+                            \$('.share-icon').remove();
+                            \$('.footer').remove();
+                            \$('.vert').remove(); 
+                            \$('noindex').remove();     
+                            \$('.article-source-link').remove();       
+                            \$('#top-coins').remove();        
+                            \$('.top-coins-title').remove();       
+                            \$('.cookies_processing').remove();
+                             \$('div').removeAttr('ng-include')
+   \$('.comments').remove();
+                            \$('div').removeAttr('ng-if')
 
                   });
                   """, injectionTime: UserScriptInjectionTime.AT_DOCUMENT_START)

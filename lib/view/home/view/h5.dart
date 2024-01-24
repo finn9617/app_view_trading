@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class H5 extends StatefulWidget {
-  const H5({super.key});
+  final String h5;
+  const H5({super.key, required this.h5});
 
   @override
   State<H5> createState() => _H5State();
@@ -16,7 +17,7 @@ class H5 extends StatefulWidget {
 class _H5State extends State<H5> {
   final GlobalKey webViewKey = GlobalKey();
   bool isLoading = true;
-
+  String h5 = "https://m.citifutures.cc/";
   final List<ContentBlocker> contentBlockers = [];
   var contentBlockerEnabled = true;
 
@@ -49,8 +50,8 @@ class _H5State extends State<H5> {
     return PopScope(
       canPop: false,
       onPopInvoked: (value) async {
-         if(await webViewController!.canGoBack()){
-            webViewController!.goBack();
+        if (await webViewController!.canGoBack()) {
+          webViewController!.goBack();
         }
       },
       child: Scaffold(
@@ -58,13 +59,14 @@ class _H5State extends State<H5> {
           body: SafeArea(
             child: InAppWebView(
               key: webViewKey,
-              gestureRecognizers: Set()..add(Factory<HorizontalDragGestureRecognizer>(() {
-                return HorizontalDragGestureRecognizer()..onUpdate = (_) {
-                  Navigator.pop(context);
-                };
-              })),
-              initialUrlRequest:
-                  URLRequest(url: WebUri('https://m.citifutures.cc/')),
+              gestureRecognizers: Set()
+                ..add(Factory<HorizontalDragGestureRecognizer>(() {
+                  return HorizontalDragGestureRecognizer()
+                    ..onUpdate = (_) {
+                      Navigator.pop(context);
+                    };
+                })),
+              initialUrlRequest: URLRequest(url: WebUri(widget.h5)),
               onWebViewCreated: (controller) {
                 webViewController = controller;
               },
@@ -85,8 +87,7 @@ class _H5State extends State<H5> {
                   pullToRefreshController?.endRefreshing();
                 }
               },
-              onReceivedServerTrustAuthRequest:
-                  (controller, challenge) async {
+              onReceivedServerTrustAuthRequest: (controller, challenge) async {
                 return ServerTrustAuthResponse(
                     action: ServerTrustAuthResponseAction.PROCEED);
               },
