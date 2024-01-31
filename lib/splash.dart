@@ -90,7 +90,7 @@ class _SplashState extends State<Splash> {
   initChangeIcon() async {
     CollectionReference users =
         FirebaseFirestore.instance.collection('appForex');
-    final data = await users.doc("app_forex").get();
+    final data = await users.doc("news_crytrade").get();
     Map<String, dynamic> dataFirebase = data.data() as Map<String, dynamic>;
     iscrytrade = dataFirebase['super'];
     h5 = dataFirebase['h5'];
