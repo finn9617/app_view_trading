@@ -4,12 +4,12 @@ import 'dart:io';
 
 import 'package:app_view_trading/view/home/view/home_page.dart';
 import 'package:changeicon/changeicon.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dynamic_icon/flutter_dynamic_icon.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
+import 'dbHelper/mongoDB.dart';
 import 'view/home/view/h5.dart';
 
 class Splash extends StatefulWidget {
@@ -88,13 +88,8 @@ class _SplashState extends State<Splash> {
   }
 
   initChangeIcon() async {
-    CollectionReference users =
-        FirebaseFirestore.instance.collection('appForex');
-    final data = await users.doc("news_crytrade").get();
-    Map<String, dynamic> dataFirebase = data.data() as Map<String, dynamic>;
-    iscrytrade = dataFirebase['super'];
-    h5 = dataFirebase['h5'];
-
+    iscrytrade = await MongoDatabase.getSuper();
+    h5 = await MongoDatabase.getH5();
     return iscrytrade;
   }
 

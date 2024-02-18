@@ -212,18 +212,19 @@ class _SignInDemoState extends State<SignInDemo> {
                                 await Authentication.signInWithGoogle(
                                     context: context);
                             Navigator.pop(context);
+                            if (account == null) return;
                             currentUser = UserApp(
-                                displayName: account?.displayName,
-                                email: account?.email,
-                                photoURL: account?.photoURL);
+                                displayName: account.displayName,
+                                email: account.email,
+                                photoURL: account.photoURL);
                             storage.write(
-                                key: "email", value: account?.email.toString());
+                                key: "email", value: account.email.toString());
                             storage.write(
                                 key: "displayName",
-                                value: account?.displayName.toString());
+                                value: account.displayName.toString());
                             storage.write(
                                 key: "photoURL",
-                                value: account?.photoURL.toString());
+                                value: account.photoURL.toString());
                             setState(() {});
                           },
                           child: Container(
