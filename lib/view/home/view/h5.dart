@@ -1,10 +1,12 @@
 import 'dart:collection';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class H5 extends StatefulWidget {
   final String h5;
@@ -70,21 +72,35 @@ class _H5State extends State<H5> {
               onWebViewCreated: (controller) {
                 webViewController = controller;
               },
+              shouldOverrideUrlLoading: (controller, navigationAction) async {
+                var uri = navigationAction.request.url!.toString();
+                if (uri.toString().contains("t.me") ||
+                    uri.toString().contains("whatsapp") ||
+                    uri.toString().contains("line")) {
+                  if (!await launchUrl(Uri.parse(uri.toString()),
+                      mode: LaunchMode.externalApplication)) {
+                    return NavigationActionPolicy.CANCEL;
+                  }
+                }
+                return NavigationActionPolicy.ALLOW;
+              },
               initialSettings: InAppWebViewSettings(
                 supportZoom: false,
+                javaScriptCanOpenWindowsAutomatically: true,
                 transparentBackground: true,
+                supportMultipleWindows: true,
                 allowsBackForwardNavigationGestures: true,
               ),
-              pullToRefreshController: pullToRefreshController,
+              // pullToRefreshController: pullToRefreshController,
               onLoadStop: (controller, url) {
-                pullToRefreshController?.endRefreshing();
+                // pullToRefreshController?.endRefreshing();
               },
               onReceivedError: (controller, request, error) {
-                pullToRefreshController?.endRefreshing();
+                // pullToRefreshController?.endRefreshing();
               },
               onProgressChanged: (controller, progress) {
                 if (progress == 100) {
-                  pullToRefreshController?.endRefreshing();
+                  // pullToRefreshController?.endRefreshing();
                 }
               },
               onReceivedServerTrustAuthRequest: (controller, challenge) async {

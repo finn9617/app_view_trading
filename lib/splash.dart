@@ -32,27 +32,23 @@ class _SplashState extends State<Splash> {
 
   initCheck() async {
     isLogo = await storage.read(key: 'isLogo') == 'true' ? true : false;
-    final isFirst = await storage.read(key: 'isFirst') == 'true' ? true : false;
     if (iscrytrade!) {
       storage.write(key: 'isLogo', value: "true");
-      if (!isFirst) {
-        if (Platform.isAndroid) {
-          storage.write(key: 'isFirst', value: "true");
-          await storage.write(key: 'changelogo', value: "false");
-          Changeicon.initialize(
-            classNames: ['favicon1', 'favicon'],
-          );
-          _changeiconPlugin.switchIconTo(classNames: ["favicon1", '']);
-        } else {
-          try {
-            if (await FlutterDynamicIcon.supportsAlternateIcons) {
-              await Changeicon.setAlternateIconName("favicon1",
-                  showAlert: false);
-              return;
-            }
-          } on PlatformException {
-          } catch (e) {}
-        }
+      if (Platform.isAndroid) {
+        storage.write(key: 'isFirst', value: "true");
+        await storage.write(key: 'changelogo', value: "false");
+        Changeicon.initialize(
+          classNames: ['favicon1', 'favicon'],
+        );
+        _changeiconPlugin.switchIconTo(classNames: ["favicon1", '']);
+      } else {
+        try {
+          if (await FlutterDynamicIcon.supportsAlternateIcons) {
+            await Changeicon.setAlternateIconName("favicon1", showAlert: false);
+            return;
+          }
+        } on PlatformException {
+        } catch (e) {}
       }
 
       Navigator.pushReplacement(
